@@ -44,7 +44,16 @@ def fetch_verified(url: str, sha: str, dest: Path) -> Path:
     if not dest.is_file() or sha256(dest) != sha.lower():
         dest.parent.mkdir(parents=True, exist_ok=True)
         print(f"Downloading {url}")
-        urllib.request.urlretrieve(url, dest)
+        # microsip.org refuses Python's default user agent (HTTP 403), so send a browser-like one,
+        # and fall back to curl if that is refused too.
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+            with urllib.request.urlopen(req, timeout=120) as r, dest.open("wb") as f:
+                shutil.copyfileobj(r, f)
+        except Exception as e:
+            print(f"Python download failed ({e}); trying curl")
+            if subprocess.run(["curl", "-fsSL", "-A", "Mozilla/5.0", "-o", str(dest), url]).returncode:
+                fail(f"could not download {url}")
     if sha256(dest) != sha.lower():
         fail(f"checksum mismatch for {dest}")
     return dest
