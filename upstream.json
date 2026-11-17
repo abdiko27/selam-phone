@@ -1,0 +1,5 @@
+{
+  "repo": "https://github.com/AvrumFeldman/microsip-custom.git",
+  "commit": "1f12291715d75da6850cc85e85430bd05b531430",
+  "note": "MicroSIP 3.22.16 based fork. Change the commit only after testing the new version; brand.py stops with a clear error if the upstream code it edits has moved."
+}
