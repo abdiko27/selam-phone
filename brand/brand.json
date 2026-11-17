@@ -1,0 +1,26 @@
+{
+  "_comment": "Edit this file to rebrand. Keep name, exe_name and app_id stable once customers have installed the app.",
+
+  "name": "Selam Phone",
+  "exe_name": "SelamPhone",
+  "company": "Selam Communications",
+  "app_id": "SelamCommunications.SelamPhone",
+  "version": "1.0.0",
+
+  "website": "https://example.com",
+  "support_url": "https://example.com/support",
+  "support_phone": "+251 911 000 000",
+
+  "update_url": "",
+
+  "colour": "#0b6e4f",
+  "accent": "#f2a900",
+
+  "defaults": {
+    "label": "Office",
+    "server": "192.168.26.10",
+    "transport": "udp",
+    "voicemail": "*97",
+    "codecs": "G722/16000/1 PCMA/8000/1 PCMU/8000/1"
+  }
+}
